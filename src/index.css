@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #00a7e1;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.app {
+  display: flex;
+}
+main {
+  width: 70%;
+}
+.order-details {
+  width: 30%;
+  background-color: rgb(68, 68, 68);
+  height: 100vh;
+}
+.products {
+  display: flex;
+}
+.card {
+  width: 200px;
+  height: 250px;
+  border: 2px solid white;
+  border-radius: 25px;
+  margin: 50px 30px;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.card h3 {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin: 0px;
+  text-align: center;
+  padding: 10px 0px;
+  border-radius: 25px;
+}
+.card span {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.card:hover img {
+  opacity: 0.8;
+}
+.order-item {
+  background-color: rgb(22, 22, 22);
+  color: white;
+  list-style-type: none;
+  padding: 18px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+.order-item:hover {
+  background-color: gray;
+}
+.order-details ul {
+  margin: 0px;
+  padding: 0px;
+}
+.order-details h1 {
+  color: white;
+  margin: 40px;
+  text-align: center;
+}
