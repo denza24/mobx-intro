@@ -19,11 +19,7 @@ code {
 main {
   width: 70%;
 }
-.order-details {
-  width: 30%;
-  background-color: rgb(68, 68, 68);
-  height: 100vh;
-}
+
 .products {
   display: flex;
 }
@@ -36,6 +32,7 @@ main {
   background-color: white;
   position: relative;
   cursor: pointer;
+  box-shadow: 0px 2px 8px 7px rgba(0, 0, 0, 0.26);
 }
 .card img {
   width: 100%;
@@ -71,24 +68,63 @@ main {
 .card:hover img {
   opacity: 0.8;
 }
-.order-item {
-  background-color: rgb(22, 22, 22);
-  color: white;
-  list-style-type: none;
-  padding: 18px;
-  font-size: 1.2rem;
-  border-bottom: 1px solid gray;
-  cursor: pointer;
-}
-.order-item:hover {
-  background-color: gray;
+
+.order-details {
+  width: 30%;
+  background-color: rgb(49, 49, 49);
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 .order-details ul {
   margin: 0px;
   padding: 0px;
+  min-height: 687px;
 }
 .order-details h1 {
   color: white;
   margin: 40px;
   text-align: center;
+}
+.total {
+  font-size: 2.5rem;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px 40px;
+  background-color: rgb(22, 22, 22);
+}
+
+.order-item {
+  background-color: rgb(22, 22, 22);
+  color: white;
+  list-style-type: none;
+  padding: 10px 30px;
+  border: 1px solid gray;
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+}
+.order-item:hover {
+  background-color: gray;
+}
+.order-item .amount {
+  padding: 10px;
+  background-color: orange;
+  color: black;
+  border-radius: 25px;
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.order-item .price {
+  color: white;
+}
+.order-item .title {
+  margin: 10px 0px;
 }

@@ -6,7 +6,7 @@ const Product = ({ product, onClick }) => {
     <Card onClick={onClick}>
       <img src={product.imageUrl} alt="product" />
       <h3>{product.name}</h3>
-      <span>{product.price}</span>
+      <span>{product.price.toFixed(2)}</span>
     </Card>
   );
 };

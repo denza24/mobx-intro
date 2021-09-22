@@ -24,7 +24,9 @@ const Products = () => {
 
     return data;
   };
-
+  const onAddToCart = (product) => {
+    productsContext.onAddToCart(product);
+  };
   let productsToMap = [];
   const subId = productsContext.selectedSubCategoryId;
   if (subId) {
@@ -36,7 +38,7 @@ const Products = () => {
         <Product
           key={prod.name}
           product={prod}
-          onClick={() => productsContext.onAddToCart(prod)}
+          onClick={() => onAddToCart(prod)}
         />
       ))}
     </section>
