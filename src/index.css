@@ -72,14 +72,13 @@ main {
 .order-details {
   width: 30%;
   background-color: rgb(49, 49, 49);
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
 }
 .order-details ul {
   margin: 0px;
   padding: 0px;
-  min-height: 687px;
+  height: 70vh;
 }
 .order-details h1 {
   color: white;
@@ -87,15 +86,18 @@ main {
   text-align: center;
 }
 .total {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0px 40px;
   background-color: rgb(22, 22, 22);
+  height: 20vh;
 }
-
+.total h3 {
+  margin: 10px 0px;
+}
 .order-item {
   background-color: rgb(22, 22, 22);
   color: white;

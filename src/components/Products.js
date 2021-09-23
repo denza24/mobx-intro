@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react-lite";
+import CategoriesContext from "../store/CategoriesStore";
 import { ProductsContext } from "../store/ProductsContext";
 import Product from "./Product";
 
@@ -6,6 +8,7 @@ const Products = () => {
   const [products, setProducts] = React.useState([]);
 
   const productsContext = React.useContext(ProductsContext);
+  const ctgStore = React.useContext(CategoriesContext);
 
   React.useEffect(() => {
     const getProducts = async () => {
@@ -24,11 +27,9 @@ const Products = () => {
 
     return data;
   };
-  const onAddToCart = (product) => {
-    productsContext.onAddToCart(product);
-  };
+
   let productsToMap = [];
-  const subId = productsContext.selectedSubCategoryId;
+  const subId = ctgStore.selectedSubCategoryId;
   if (subId) {
     productsToMap = products.filter((prod) => prod.subcategoryId === subId);
   }
@@ -38,11 +39,11 @@ const Products = () => {
         <Product
           key={prod.name}
           product={prod}
-          onClick={() => onAddToCart(prod)}
+          onClick={() => productsContext.onAddToCart(prod)}
         />
       ))}
     </section>
   );
 };
 
-export default Products;
+export default observer(Products);

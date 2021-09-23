@@ -1,9 +1,12 @@
 import React, { useState, useReducer, useEffect } from "react";
-import CartContext from "./CartStore";
 
 export const ProductsContext = React.createContext({
+  selectedCategoryId: 0,
+  selectedSubCategoryId: 0,
   totalAmount: 0,
   cartProducts: [],
+  onCategorySelect: () => {},
+  onSubCategorySelect: () => {},
   onAddToCart: () => {},
   onCartItemRemove: () => {},
 });
@@ -66,11 +69,12 @@ const cartReducer = (state, action) => {
 };
 
 export const ProductsProvider = (props) => {
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(0);
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
   );
-  const cartStore = React.useContext(CartContext);
 
   useEffect(() => {
     const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
@@ -89,28 +93,31 @@ export const ProductsProvider = (props) => {
     const timer = setTimeout(() => {
       localStorage.setItem("cart", JSON.stringify(cartState.items));
       localStorage.setItem("total", JSON.stringify(cartState.totalAmount));
-      let itemsCount = 0;
-
-      for (const item of cartState.items) {
-        itemsCount += item.amount;
-      }
-      localStorage.setItem("itemsCount", JSON.stringify(itemsCount));
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
   }, [cartState]);
 
+  const handleCategorySelect = (id) => {
+    setSelectedSubCategoryId(0);
+    setSelectedCategoryId(id);
+  };
+  const handleSubCategorySelect = (id) => {
+    setSelectedSubCategoryId(id);
+  };
   const handleAddToCart = (product) => {
-    cartStore.incrementOne();
     dispatchCartAction({ type: "ADD_ITEM", item: product });
   };
   const handleRemoveFromCart = (name) => {
-    cartStore.decrementOne();
     dispatchCartAction({ type: "REMOVE_ITEM", name: name });
   };
 
   const productsContext = {
+    selectedCategoryId: selectedCategoryId,
+    selectedSubCategoryId: selectedSubCategoryId,
+    onCategorySelect: handleCategorySelect,
+    onSubCategorySelect: handleSubCategorySelect,
     cartProducts: cartState.items,
     totalAmount: cartState.totalAmount,
     onAddToCart: handleAddToCart,
