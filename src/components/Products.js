@@ -1,37 +1,26 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import CategoriesContext from "../store/CategoriesStore";
-import { ProductsContext } from "../store/ProductsContext";
+import ProductsContext from "../store/ProductsStore";
 import Product from "./Product";
+import CartContext from "../store/CartStore";
 
 const Products = () => {
-  const [products, setProducts] = React.useState([]);
-
-  const productsContext = React.useContext(ProductsContext);
   const ctgStore = React.useContext(CategoriesContext);
+  const productsStore = React.useContext(ProductsContext);
+  const cartStore = React.useContext(CartContext);
 
   React.useEffect(() => {
-    const getProducts = async () => {
-      const productsFromServer = await fetchProducts();
-
-      setProducts(productsFromServer);
-    };
-    getProducts();
+    productsStore.getProductsAsync();
+    //eslint-disable-next-line
   }, []);
-
-  const fetchProducts = async () => {
-    const res = await fetch(
-      "https://api.jsonbin.io/b/6149c12caa02be1d444c3b07"
-    );
-    const data = await res.json();
-
-    return data;
-  };
 
   let productsToMap = [];
   const subId = ctgStore.selectedSubCategoryId;
   if (subId) {
-    productsToMap = products.filter((prod) => prod.subcategoryId === subId);
+    productsToMap = productsStore.products.filter(
+      (prod) => prod.subcategoryId === subId
+    );
   }
   return (
     <section className="products">
@@ -39,7 +28,7 @@ const Products = () => {
         <Product
           key={prod.name}
           product={prod}
-          onClick={() => productsContext.onAddToCart(prod)}
+          onClick={() => cartStore.addItemToCart(prod)}
         />
       ))}
     </section>

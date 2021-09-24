@@ -1,0 +1,19 @@
+.tables {
+  width: 1200px;
+  margin: 50px auto;
+}
+.tables ul {
+  display: flex;
+}
+.tables div {
+  text-align: center;
+}
+.tables li {
+  width: 100px;
+  height: 80px;
+  background-color: lightblue;
+  border-radius: 50px;
+  margin: 30px;
+  list-style-type: none;
+  cursor: pointer;
+}

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import Button from "./Button";
-import { ProductsContext } from "../store/ProductsContext";
 import CategoriesContext from "../store/CategoriesStore";
 
 const Categories = () => {
@@ -11,6 +10,7 @@ const Categories = () => {
   const categoriesStore = useContext(CategoriesContext);
   useEffect(() => {
     categoriesStore.getCategoriesAsync();
+    // eslint-disable-next-line
   }, []);
   //useEffect(() => {
   // const getCategories = async () => {
@@ -48,7 +48,7 @@ const Categories = () => {
           key={ctg.id}
           text={ctg.name}
           onClick={() => categoriesStore.onSelectCategoryId(ctg.id)}
-          active={categoriesStore.selectedCategoryId === ctg.id}
+          isSelected={categoriesStore.selectedCategoryId === ctg.id}
         />
       ))}
     </div>

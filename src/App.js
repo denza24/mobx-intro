@@ -1,20 +1,16 @@
+import React from "react";
 import "./App.css";
 import { observer } from "mobx-react";
-import Categories from "./components/Categories";
-import SubCategories from "./components/SubCategories";
-import Products from "./components/Products";
-import OrderDetails from "./components/OrderDetails";
+
+import { Route } from "react-router-dom";
+import Tables from "./pages/Tables";
+import NewOrder from "./pages/NewOrder";
 
 function App() {
   return (
     <div className="app">
-      <main>
-        <Categories />
-        <SubCategories />
-        <Products />
-      </main>
-
-      <OrderDetails />
+      <Route exact path="/" component={Tables} />
+      <Route path="/newOrder" component={NewOrder} />
     </div>
   );
 }

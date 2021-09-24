@@ -2,16 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { ProductsProvider } from "./store/ProductsContext";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ProductsProvider>
-      <App />
-    </ProductsProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+const renderElement = (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
+ReactDOM.render(renderElement, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

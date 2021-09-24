@@ -23,7 +23,7 @@ class CategoriesStore {
   };
   onSelectCategoryId = (id) => {
     this.selectedCategoryId = id;
-    //set first subcategory for select category
+    //select first subcategory
     const subCategories = this.subCategories.filter(
       (subCtg) => subCtg.categoryId === id
     );

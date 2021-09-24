@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Button from "./Button";
 import { observer } from "mobx-react-lite";
-import { ProductsContext } from "../store/ProductsContext";
 import CategoriesContext from "../store/CategoriesStore";
 
 const SubCategories = () => {
@@ -41,6 +40,7 @@ const SubCategories = () => {
   const categoriesStore = useContext(CategoriesContext);
   useEffect(() => {
     categoriesStore.getSubCategoriesAsync();
+    // eslint-disable-next-line
   }, []);
 
   const ctgId = categoriesStore.selectedCategoryId;
@@ -51,6 +51,7 @@ const SubCategories = () => {
       (sub) => sub.categoryId === ctgId
     );
   }
+
   return (
     <div>
       {subCategoriesToMap.map((sub) => (
@@ -58,7 +59,7 @@ const SubCategories = () => {
           key={sub.id}
           text={sub.name}
           onClick={() => categoriesStore.onSelectSubCategoryId(sub.id)}
-          active={categoriesStore.selectedSubCategoryId === sub.id}
+          isSelected={categoriesStore.selectedSubCategoryId === sub.id}
         />
       ))}
     </div>
